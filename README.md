@@ -61,8 +61,8 @@ Steps to Run Script
 #Run cooomand given below 
 !pip install GEOparse gseapy umap-learn scikit-learn matplotlib seaborn pandas numpy scipy
 
-#Then upload and run the notebook attached here with .py extension
+#Then upload and run the notebook attached here.
 
 
 Note - To test clear functionality of code , I suggest running code in blocks/chunks  , however whole script can be run at once.
-
+#There are few optional steps ( classification of top 5 genes etc ) is also carried out in end of code , but its not required for main project work and is totally optional.
