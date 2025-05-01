@@ -627,27 +627,6 @@ print(f"External Validation Accuracy (GSE31210): {ext_accuracy:.2f}")
 
 
 
-
-"""Belwo work that have done is optional. ( Retraining model on small dataset )"""
-
-#Tried retraining Minimal Model on Top 5 Genes
-
-#Subset X to top 5 genes
-X_small = X[top_5_genes]
-
-#Split into train/test
-from sklearn.model_selection import train_test_split
-X_train_small, X_test_small, y_train_small, y_test_small = train_test_split(X_small, y, test_size=0.2, random_state=42)
-
-#Training Random Forest on Top 5 Genes
-from sklearn.ensemble import RandomForestClassifier
-minimal_model = RandomForestClassifier(n_estimators=100, random_state=42)
-minimal_model.fit(X_train_small, y_train_small)
-
-print("Minimal model retrained successfully!")
-
-
-
 #Top 10 Genes from your feature importance)
 top_10_genes = [
     'GOLM1',
@@ -691,6 +670,74 @@ plt.show()
 
 print("Heatmap saved as 'Heatmap_Top10Genes.png'")
 
+
+
+
+
+"""Belwo work that have done is optional. ( Retraining model on small dataset )"""
+
+#Tried retraining Minimal Model on Top 5 Genes
+
+#Subset X to top 5 genes
+X_small = X[top_5_genes]
+
+#Split into train/test
+from sklearn.model_selection import train_test_split
+X_train_small, X_test_small, y_train_small, y_test_small = train_test_split(X_small, y, test_size=0.2, random_state=42)
+
+#Training Random Forest on Top 5 Genes
+from sklearn.ensemble import RandomForestClassifier
+minimal_model = RandomForestClassifier(n_estimators=100, random_state=42)
+minimal_model.fit(X_train_small, y_train_small)
+
+print("Minimal model retrained successfully!")
+
+
+
+#Top 10 Genes from your feature importance)
+'''
+top_10_genes = [
+    'GOLM1',
+    'GRK5',
+    'SPP1',
+    'CDH5',
+    'ROBO4',
+    'CTHRC1',
+    'MCEMP1',
+    'LOC101927458 /// LPHN2',
+    'PCDH17',
+    'SFTPC'
+]
+
+#Preparing Data
+# X = full expression matrix with all samples and genes
+X_top10 = X[top_10_genes].copy()
+
+#Adding labels
+heatmap_data = X_top10.copy()
+heatmap_data['Label'] = y
+
+#Sorting by label (Normal first, Tumor second), So that we could get cleaner visualization
+heatmap_data = heatmap_data.sort_values(by='Label')
+
+#Drop label column after sorting for heatmap
+heatmap_data_top10 = heatmap_data.drop(columns=["Label"])
+
+#Step 3: Plot Heatmap
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(12,8))
+sns.heatmap(heatmap_data_top10, cmap='coolwarm', cbar=True)
+plt.title("Heatmap of Top 10 Important Genes (Sorted by Tumor/Normal)")
+plt.xlabel("Genes")
+plt.ylabel("Samples (Sorted)")
+plt.tight_layout()
+plt.savefig("Heatmap_Top10Genes.png")
+plt.show()
+
+print("Heatmap saved as 'Heatmap_Top10Genes.png'")
+'''
 
 
 
