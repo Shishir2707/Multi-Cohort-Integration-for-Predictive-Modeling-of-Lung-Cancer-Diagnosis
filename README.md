@@ -4,7 +4,7 @@
 This project demonstrates a robust pipeline for identifying a minimal gene signature for lung cancer diagnosis by integrating multiple GEO datasets, performing differential expression analysis, visualization, and training a Random Forest classifier with internal and external validation.
 
 The code for this project was written in python in google collab.
-
+Name of file - Shishir_Project_Pipeline_pipeline.ipynb
 
 Datasets Used :
 GSE18842, GSE19804, GSE19188 - Core training datasets ( First 2 were used in Paper I selected for presentation )
